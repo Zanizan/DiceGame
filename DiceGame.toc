@@ -1,0 +1,8 @@
+## Interface: 70200
+## Title: DiceGame
+## DefaultState: Enabled
+## Notes: Dankest game ever. 10k lets fuckin' go!
+## Author: Zanizan
+## Version: 1.0
+
+DiceGame.xml

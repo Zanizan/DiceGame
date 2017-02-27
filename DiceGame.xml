@@ -1,0 +1,95 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+ 	<Script file="DiceGame.lua"/>
+	<Frame name="DiceGameFrame" parent="UIParent" hidden="true" movable="true"
+		enableMouse="true" clampedToScreen="true">
+		<Size x="210" y="50"/>
+		<Scripts>
+			<OnLoad>
+				DiceGame_OnLoad();
+				self:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnDragStart>
+   				if not self.isLocked then
+    				self:StartMoving();
+   				end
+  			</OnDragStart>
+  			<OnDragStop>
+   				self:StopMovingOrSizing();
+  			</OnDragStop>
+		</Scripts>
+  		<Anchors>
+    		<Anchor point="LEFT">
+    			<Offset>
+            		<AbsDimension x="225" y="-175"/>
+          		</Offset>
+          	</Anchor>
+  		</Anchors>
+  		<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+			<EdgeSize val="12"/>
+    	</Backdrop>
+  		<Layers>
+    		<Layer level="BACKGROUND">
+      			<Texture setAllPoints="true">
+        			<Color r="0" g="0" b="0" a=".6"/>
+      			</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="DiceGameTitle" hidden="false" inherits="GameFontNormal" text="Dice Game">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+  		</Layers>
+  		<Frames>
+  			<Button name="DiceGameFrame_Close" inherits="UIPanelCloseButton">
+         		<Anchors>
+           			<Anchor point="TOPRIGHT">
+           				<Offset>
+        					<AbsDimension x="0" y="2"/>
+        				</Offset>
+        			</Anchor>
+         		</Anchors>
+         		<Scripts>
+      				<OnClick>
+      					StopDiceGame();
+      				</OnClick>
+      			</Scripts>
+       		</Button>
+    		<Button name="DiceGameFrame_RollButton" inherits="UIPanelButtonTemplate" text="Roll">
+      			<Size x="96" y="20"/>
+      			<Anchors>
+        			<Anchor point="BOTTOM">
+        				<Offset>
+        					<AbsDimension x="-49" y="5"/>
+        				</Offset>
+        			</Anchor>
+      			</Anchors>
+      			<Scripts>
+      				<OnClick>
+      					RollDice();
+      				</OnClick>
+      			</Scripts>
+    		</Button>
+    		<Button name="DiceGameFrame_CampfireButton" inherits="SecureActionButtonTemplate UIPanelButtonTemplate" text="Light Up" hidden="false">
+    			<Size x="96" y="20"/>
+    			<Anchors>
+        			<Anchor point="BOTTOM">
+        				<Offset>
+        					<AbsDimension x="49" y="5"/>
+        				</Offset>
+        			</Anchor>
+      			</Anchors>
+  				<Attributes>
+   					<Attribute name="type" value="spell" />
+					<Attribute name="spell" value="Cooking Fire" />
+  				</Attributes>
+			</Button>
+  		</Frames>
+	</Frame>
+</Ui>
